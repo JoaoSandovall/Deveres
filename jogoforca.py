@@ -3,10 +3,10 @@ import random
 print("\nVamos jogar o jogo da forca!")
 print("Tente adivinhar a palavra secreta, letra por letra.")
 
-palavras = ["Meg", "Python", "Desenvolvimento", "Programação", "DEV"]
+palavras = ["meg", "python", "desenvolvimento", "programacao", "dev"]
 palavra_secreta = random.choice(palavras)
 
-letras_acertadas  = []
+letras_acertadas = []
 letras_tentadas = []
 tentativas = 6
 
@@ -14,22 +14,32 @@ while tentativas > 0:
     palavra_exibida = ""
     for letra in palavra_secreta:
         if letra in letras_acertadas:
-            palavras_exibida += letra + " "
+            palavra_exibida += letra + " "
         else:
             palavra_exibida += "_ "
             
     print("\nPalavra: ", palavra_exibida)
     
+    # Verifica se o jogo acabou
     if "_" not in palavra_exibida:
-        print(f"Parabéns! Você acertou a palavra.\na palavra era: {palavra_secreta}")
+        print(f"Parabéns! Você acertou a palavra.\nA palavra era: {palavra_secreta}")
         break
+        
+    palpite = input("Adivinhe uma letra: ").lower()
     
-    print(f"Você tem {tentativas}")
-    tentativa = input("Digite uma letra: ").strip()
-    if len(tentativa)!= 1 or not tentativa.isalpha():
-        print("Por favor, insira uma única letra válida.")
-        continue
-    
-    if tentativa in letras_tentadas:
+    if palpite in letras_tentadas:
         print("Você já tentou essa letra. Tente outra.")
         continue
+    
+    letras_tentadas.append(palpite)
+    
+    if palpite in palavra_secreta:
+        letras_acertadas.append(palpite)
+        print("Boa! Você acertou uma letra.")
+        
+    else:
+        tentativas -= 1
+        print(f"Letra incorreta. Você tem {tentativas} tentativas restantes.")
+        
+    if tentativas == 0:
+        print(f"Fim de jogo! A palavra era: {palavra_secreta}")

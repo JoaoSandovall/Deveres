@@ -1,0 +1,1 @@
+palindromo = input("\nDigite uma palavra ou frase para identificar o palindromo: ")
