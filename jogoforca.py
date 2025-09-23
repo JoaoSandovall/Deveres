@@ -20,7 +20,6 @@ while tentativas > 0:
             
     print("\nPalavra: ", palavra_exibida)
     
-    # Verifica se o jogo acabou
     if "_" not in palavra_exibida:
         print(f"Parabéns! Você acertou a palavra.\nA palavra era: {palavra_secreta}")
         break
